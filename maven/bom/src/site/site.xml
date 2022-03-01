@@ -8,11 +8,11 @@
     </skin>
 
     <bannerLeft>
-        <name/>
+        <name>${project.artifactId}</name>
     </bannerLeft>
 
     <bannerRight>
-        <name>${project.artifactId}</name>
+        <name/>
     </bannerRight>
 
     <publishDate position="left" format="dd/MM/yyyy HH:mm"/>
@@ -23,13 +23,14 @@
             <topBarEnabled>true</topBarEnabled>
             <navBarStyle>navbar-inverse</navBarStyle>
             <sideBarEnabled>false</sideBarEnabled>
-            <profile>sandbox</profile>
+            <profile>production</profile>
 
             <gitHub>
                 <projectId>lvrodrigues/public</projectId>
                 <ribbonOrientation>right</ribbonOrientation>
                 <ribbonColor>black</ribbonColor>
             </gitHub>
+            
             <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
             <copyrightClass>pull-right</copyrightClass>
         </fluidoSkin>

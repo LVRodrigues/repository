@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>br.com.spiderbot</groupId>
+  <groupId>com.github.lvrodrigues</groupId>
   <artifactId>bom</artifactId>
   <version>17.0-SNAPSHOT</version>
   <name>bom</name>
   <packaging>pom</packaging>
   <description>Projeto de configurações iniciais para projetos Maven, utilizando o Github como repositório.</description>
-  <url>https://github.com/LVRodrigues/public</url>
+  <url>https://github.com/LVRodrigues/public/${project.groupId}/${project.artifactId}-${project.version}</url>
 
   <properties>
     <!-- Configurações de ambiente -->
@@ -15,35 +15,51 @@
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <!-- Dependências de testes -->
-    <junit.version>5.8.2</junit.version>
-    <!-- Plugins -->
-    <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
-    <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
-    <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+    <scm.url>scm:git:https://github.com/LVRodrigues/public</scm.url>
+    <spotbugs.exclusions.location>${project.build.directory}/spotbugs-exclusions.xml</spotbugs.exclusions.location>
+    <!-- Plugin de Restrição e Ambiente -->
     <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
-    <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+    <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
+    <!-- Plugins de Construção -->
+    <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+    <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-    <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
-    <maven-javadoc-plugin.version>3.3.2</maven-javadoc-plugin.version>
+    <maven-compiler-plugin.version>3.10.0</maven-compiler-plugin.version>
+    <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
     <maven-site-plugin.version>3.10.0</maven-site-plugin.version>
+    <!-- Plugins de Gerenciamento de Código -->
+    <jgitflow-maven-plugin.version>1.0-m5.1</jgitflow-maven-plugin.version>
+    <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+    <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+    <spotbugs-maaven-plugin.version>4.5.3.0</spotbugs-maaven-plugin.version>
+    <!-- Plugins de Relatórios -->
     <maven-project-info-reports-plugin.version>3.2.1</maven-project-info-reports-plugin.version>
-    <!-- JaCoCo thresholds. Increase gradually as you add tests. -->
+    <maven-jxr-plugin.version>3.1.1</maven-jxr-plugin.version>
+    <maven-pmd-plugin.version>3.15.0</maven-pmd-plugin.version>
+    <maven-javadoc-plugin.version>3.3.2</maven-javadoc-plugin.version>
+    <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
+    <!-- Ferramentas -->
+    <checkstyle.version>9.3</checkstyle.version>
+    <!-- Limiares JaCoCo. Aumente gradualmente à medida que você adiciona testes. -->
     <jacoco.unit-tests.limit.instruction-ratio>0%</jacoco.unit-tests.limit.instruction-ratio>
     <jacoco.unit-tests.limit.branch-ratio>0%</jacoco.unit-tests.limit.branch-ratio>
     <jacoco.unit-tests.limit.class-complexity>20</jacoco.unit-tests.limit.class-complexity>
     <jacoco.unit-tests.limit.method-complexity>5</jacoco.unit-tests.limit.method-complexity>
-    <!-- Ferramentas -->
-    <checkstyle.version>9.3</checkstyle.version>
   </properties>
 
   <developers>
     <developer>
+      <!-- 
+        ID do GIT. Não valeu a pena usar devido a problemas nos relatórios 
+        no momento de gerar os links para os usuários. A página corrente
+        chama-se teams.html e os links procuram por teams-list.html.
+      <id>Luciano Vieira Rodrigues &lt;lvrodriguesline@gmail.com&gt;</id>
+      -->
       <id>LVRodrigues</id>
       <name>Luciano Vieira Rodrigues</name>
       <email>lvrodriguesline@gmail.com</email>
       <url>https://www.linkedin.com/in/luciano-rodrigues/</url>
-      <timezone>America/Sao_Paulo (-03, -0300)</timezone>
+      <timezone>America/Sao_Paulo</timezone>
       <roles>
         <role>Architect</role>
         <role>Developer</role>
@@ -59,179 +75,310 @@
     </repository>
   </distributionManagement>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+  <scm>
+    <connection>${scm.url}</connection>
+  </scm>
 
   <build>
+    <resources>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <filtering>true</filtering>
+        <directory>src/test/resources</directory>
+      </testResource>
+    </testResources>
+    <pluginManagement>
+      <plugins>
+        <!-- Plugin de Restrição de Ambiente -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${maven-enforcer-plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <requireMavenVersion>
+                    <version>${maven.binary.version}</version>
+                  </requireMavenVersion>
+                  <requireJavaVersion>
+                    <version>${maven.compiler.release}</version>
+                  </requireJavaVersion>
+                </rules>
+                <fail>true</fail>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>${maven-antrun-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>spotbugs-exclusions</id>
+              <phase>validate</phase>
+              <configuration>
+                <target>
+                  <!-- Propriedades para a tarefa ANT -->
+                  <property name="spotbugs.exclusions" value="${spotbugs.exclusions.location}" />
+                  <!-- Exclusão dos metadados de entidades da JPA da pesquisa do Spotbugs -->
+                  <echoxml file="${spotbugs.exclusions}">
+                    <FindBugsFilter>
+                      <Match>
+                        <Source name="~.*\_.java" />
+                      </Match>
+                    </FindBugsFilter>
+                  </echoxml>
+                </target>
+              </configuration>
+              <goals>
+                <goal>run</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Plugins de Construção -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${maven-source-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>jar-no-fork</goal>
+                <goal>test-jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven-resources-plugin.version}</version>
+          <configuration>
+            <nonFilteredFileExtensions>
+              <nonFilteredFileExtension>pdf</nonFilteredFileExtension>
+              <nonFilteredFileExtension>swf</nonFilteredFileExtension>
+              <nonFilteredFileExtension>jasper</nonFilteredFileExtension>
+              <nonFilteredFileExtension>rptdesign</nonFilteredFileExtension>
+              <nonFilteredFileExtension>rptlibrary</nonFilteredFileExtension>
+              <nonFilteredFileExtension>png</nonFilteredFileExtension>
+              <nonFilteredFileExtension>jpg</nonFilteredFileExtension>
+              <nonFilteredFileExtension>jpeg</nonFilteredFileExtension>
+              <nonFilteredFileExtension>bmp</nonFilteredFileExtension>
+            </nonFilteredFileExtensions>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${maven-jar-plugin.version}</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                <addClasspath>true</addClasspath>
+              </manifest>
+            </archive>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>test-jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${maven-site-plugin.version}</version>
+          <configuration>
+            <locales>pt_BR</locales>
+          </configuration>
+        </plugin>
+        <!-- Plugins de Gerenciamento de Código -->
+        <plugin>
+          <groupId>external.atlassian.jgitflow</groupId>
+          <artifactId>jgitflow-maven-plugin</artifactId>
+          <version>${jgitflow-maven-plugin.version}</version>
+          <configuration>
+            <flowInitContext>
+              <masterBranchName>main</masterBranchName>
+            </flowInitContext>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${maven-checkstyle-plugin.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle</artifactId>
+              <version>${checkstyle.version}</version>
+            </dependency>
+          </dependencies>
+          <executions>
+            <execution>
+              <id>checkstyle</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>checkstyle-aggregate</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>pre-unit-test</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>post-unit-test</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>check-unit-test</id>
+              <phase>test</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+              <configuration>
+                <dataFile>${project.build.directory}/jacoco.exec</dataFile>
+                <rules>
+                  <rule>
+                    <element>BUNDLE</element>
+                    <limits>
+                      <limit>
+                        <counter>INSTRUCTION</counter>
+                        <value>COVEREDRATIO</value>
+                        <minimum>${jacoco.unit-tests.limit.instruction-ratio}</minimum>
+                      </limit>
+                      <limit>
+                        <counter>BRANCH</counter>
+                        <value>COVEREDRATIO</value>
+                        <minimum>${jacoco.unit-tests.limit.branch-ratio}</minimum>
+                      </limit>
+                    </limits>
+                  </rule>
+                  <rule>
+                    <element>CLASS</element>
+                    <limits>
+                      <limit>
+                        <counter>COMPLEXITY</counter>
+                        <value>TOTALCOUNT</value>
+                        <maximum>${jacoco.unit-tests.limit.class-complexity}</maximum>
+                      </limit>
+                    </limits>
+                  </rule>
+                  <rule>
+                    <element>METHOD</element>
+                    <limits>
+                      <limit>
+                        <counter>COMPLEXITY</counter>
+                        <value>TOTALCOUNT</value>
+                        <maximum>${jacoco.unit-tests.limit.method-complexity}</maximum>
+                      </limit>
+                    </limits>
+                  </rule>
+                </rules>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>${spotbugs-maaven-plugin.version}</version>
+          <configuration>
+            <excludeFilterFile>${findbugs.exclusions.location}</excludeFilterFile>
+          </configuration>
+        </plugin>
+        <!-- Plugins de Relatórios -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>${maven-pmd-plugin.version}</version>
+          <configuration>
+            <analysisCache>true</analysisCache>
+            <analysisCacheLocation>${project.build.directory}/pmd/pmd.cache</analysisCacheLocation>
+            <linkXRef>true</linkXRef>
+            <skipEmptyReport>false</skipEmptyReport>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+                <goal>cpd-check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin.version}</version>
+					<configuration>
+						<show>private</show>
+						<additionalOptions>-html5</additionalOptions>
+					</configuration>
+				</plugin>        
+      </plugins>
+    </pluginManagement>
+    <!-- Execuções de plugins... -->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${maven-compiler-plugin.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>${maven-jar-plugin.version}</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathPrefix>lib/</classpathPrefix>
-            </manifest>
-          </archive>
-        </configuration>
+        <artifactId>maven-antrun-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>${maven-source-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>test-jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <version>${maven-enforcer-plugin.version}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <requireMavenVersion>
-                  <version>${maven.binary.version}</version>
-                </requireMavenVersion>
-                <requireJavaVersion>
-                  <version>${maven.compiler.release}</version>
-                </requireJavaVersion>
-              </rules>
-              <fail>true</fail>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>${maven-checkstyle-plugin.version}</version>
-        <dependencies>
-          <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>${checkstyle.version}</version>
-          </dependency>
-        </dependencies>
-        <executions>
-          <execution>
-            <id>checkstyle</id>
-            <phase>validate</phase>
-            <goals>
-              <goal>checkstyle-aggregate</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven-surefire-plugin.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>${jacoco-maven-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>pre-unit-test</id>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>post-unit-test</id>
-            <phase>test</phase>
-            <goals>
-              <goal>report</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>check-unit-test</id>
-            <phase>test</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <configuration>
-              <dataFile>${project.build.directory}/jacoco.exec</dataFile>
-              <rules>
-                <rule>
-                  <element>BUNDLE</element>
-                  <limits>
-                    <limit>
-                      <counter>INSTRUCTION</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>${jacoco.unit-tests.limit.instruction-ratio}</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>${jacoco.unit-tests.limit.branch-ratio}</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <limits>
-                    <limit>
-                      <counter>COMPLEXITY</counter>
-                      <value>TOTALCOUNT</value>
-                      <maximum>${jacoco.unit-tests.limit.class-complexity}</maximum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>METHOD</element>
-                  <limits>
-                    <limit>
-                      <counter>COMPLEXITY</counter>
-                      <value>TOTALCOUNT</value>
-                      <maximum>${jacoco.unit-tests.limit.method-complexity}</maximum>
-                    </limit>
-                  </limits>
-                </rule>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>${maven-site-plugin.version}</version>
-        <configuration>
-          <locales>pt_BR</locales>
-        </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+      </plugin>         
     </plugins>
   </build>
 
@@ -244,8 +391,38 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+      </plugin>      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>${maven-jxr-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>${maven-pmd-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>${maven-javadoc-plugin.version}</version>
+        <reportSets>
+          <reportSet> 
+            <reports>
+              <report>javadoc</report>
+              <report>test-javadoc</report>
+            </reports>
+          </reportSet>
+          <reportSet>
+            <id>aggregate</id>
+            <inherited>false</inherited>
+            <reports>
+              <report>aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -258,6 +435,11 @@
             </reports>
           </reportSet>
         </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changelog-plugin</artifactId>
+        <version>${maven-changelog-plugin.version}</version>
       </plugin>
     </plugins>
   </reporting>
