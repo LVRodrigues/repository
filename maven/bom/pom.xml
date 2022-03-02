@@ -245,7 +245,7 @@
           <artifactId>gitflow-maven-plugin</artifactId>
           <version>${gitflow-maven-plugin.version}</version>
           <configuration>
-            <scmCommentPrefix>[RELEASE] </scmCommentPrefix>
+            <skipFeatureVersion>true</skipFeatureVersion>
             <flowInitContext>
               <productionBranch>main</productionBranch>
               <versionTagPrefix>version-</versionTagPrefix>
