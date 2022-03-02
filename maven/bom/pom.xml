@@ -3,7 +3,7 @@
 
   <groupId>com.github.lvrodrigues</groupId>
   <artifactId>bom</artifactId>
-  <version>17.0-SNAPSHOT</version>
+  <version>17.0-javadoc-SNAPSHOT</version>
   <name>bom</name>
   <packaging>pom</packaging>
   <description>Projeto de configurações iniciais para projetos Maven, utilizando o Github como repositório.</description>
