@@ -135,16 +135,16 @@
               <phase>validate</phase>
               <configuration>
                 <target>
-                  <!-- Propriedades para a tarefa ANT -->
-                  <property name="spotbugs.exclusions" value="${spotbugs.exclusions.location}" />
-                  <!-- Exclusão dos metadados de entidades da JPA da pesquisa do Spotbugs -->
-                  <echoxml file="${spotbugs.exclusions}">
-                    <FindBugsFilter>
-                      <Match>
-                        <Source name="~.*\_.java" />
-                      </Match>
-                    </FindBugsFilter>
-                  </echoxml>
+<!-- Propriedades para a tarefa ANT -->
+<property name="spotbugs.exclusions" value="${spotbugs.exclusions.location}" />
+<!-- Exclusão dos metadados de entidades da JPA da pesquisa do Spotbugs -->
+<echoxml file="${spotbugs.exclusions}">
+  <FindBugsFilter>
+    <Match>
+      <Source name="~.*\_.java" />
+    </Match>
+  </FindBugsFilter>
+</echoxml>
                 </target>
               </configuration>
               <goals>
