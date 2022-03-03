@@ -16,9 +16,12 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <scm.url>scm:git:https://github.com/LVRodrigues/public</scm.url>
-    <spotbugs.exclusions.location>spotbugs-exclusions.xml</spotbugs.exclusions.location>
-    <checkstyle.suppressions.location>checkstyle-suppressions.xml</checkstyle.suppressions.location>
-    <checkstyle.config.location>checkstyle-config.xml</checkstyle.config.location>
+    <spotbugs.exclusions.file>lvrodrigues-spotbugs-exclusions.xml</spotbugs.exclusions.file>
+    <spotbugs.exclusions.location>${project.build.directory}/${spotbugs.exclusions.file}</spotbugs.exclusions.location>
+    <checkstyle.suppressions.file>lvrodrigues-checkstyle-suppressions.xml</checkstyle.suppressions.file>
+    <checkstyle.suppressions.location>${project.build.directory}/${checkstyle.suppressions.file}</checkstyle.suppressions.location>
+    <checkstyle.config.file>lvrodrigues-checkstyle-config.xml</checkstyle.config.file>
+    <checkstyle.config.location>${project.build.directory}/${checkstyle.config.file}</checkstyle.config.location>
     <!-- Plugin de Restrição e Ambiente -->
     <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
@@ -137,7 +140,7 @@
               <phase>initialize</phase>
               <configuration>
                 <target>
-                  <echoxml file="${project.build.directory}/${spotbugs.exclusions.location}">
+                  <echoxml file="${spotbugs.exclusions.location}">
                     <FindBugsFilter>
                       <Match>
                         <Source name="~.*\_.java" />
@@ -155,14 +158,14 @@
               <phase>initialize</phase>
               <configuration>
                 <target>
-                  <echo file="${project.build.directory}/${checkstyle.suppressions.location}">
+                  <echo file="${checkstyle.suppressions.location}">
                     <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
                     <!DOCTYPE suppressions PUBLIC
-                      "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
-                      "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+                        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+                        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
                     ]]>
                   </echo>
-                  <echoxml file="${project.build.directory}/${checkstyle.suppressions.location}" append="true">
+                  <echoxml file="${checkstyle.suppressions.location}" append="true">
                     <suppressions>
                       <!-- Ajustes para Testes unitários. -->
                       <suppress checks="MissingCtor" files="[a-z,A-Z,0-9]*(Test)[a-z,A-Z,0-9]*(.java)" />
@@ -186,156 +189,257 @@
               <phase>initialize</phase>
               <configuration>
                 <target>
-                  <echo file="${project.build.directory}/${checkstyle.config.location}">
+                  <echo file="${checkstyle.config.location}">
                     <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
                     <!DOCTYPE module PUBLIC
                       "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
                       "https://checkstyle.org/dtds/configuration_1_3.dtd">
                     ]]>
                   </echo>
-                  <echoxml file="${project.build.directory}/${checkstyle.config.location}" append="true">
+                  <echoxml file="${checkstyle.config.location}" append="true">
                     <module name="Checker">
                       <!-- Removendo a validação do descritor de módulos java -->
                       <module name="BeforeExecutionExclusionFileFilter">
                         <property name="fileNamePattern" value="module\-info\.java$" />
                       </module>
-
                       <!-- Filtro de supreesão de testes -->
                       <module name="SuppressionFilter">
                         <property name="file" value="${checkstyle.suppressions.location}" />
                       </module>
-                      <module name="SuppressWarningsFilter" />
-
                       <!-- Tamanho máximo do arquivo. -->
                       <module name="FileLength">
                         <property name="max" value="2000" />
                         <property name="fileExtensions" value="java" />
                       </module>
-
                       <!-- Tamanho máximo das linhas de código -->
                       <module name="LineLength">
-                        <property name="max" value="120" />
+                        <property name="max" value="130" />
                         <property name="ignorePattern" value="^ *\* *[^ ]+$" />
                         <property name="fileExtensions" value="java" />
                       </module>
-
+                      <!-- Anotação para suprimir alertas de verificação. -->
+                      <module name="SuppressWarningsFilter" />
                       <!-- Documentação de pacotes por Javadoc -->
                       <module name="JavadocPackage" />
-
+                      <!-- Outros -->
+                      <module name="NewlineAtEndOfFile" />
+                      <module name="OrderedProperties" />
+                      <module name="Translation" />
+                      <module name="UniqueProperties" />
+                      <!-- Conteúdo dos arquivos -->
                       <module name="TreeWalker">
+                        <!-- Configuração das mensagens. -->
+                        <property name="tabWidth" value="4" />
+                        <!-- Anotações e comentários para gerenciar alertas de verificação. -->
+                        <module name="SuppressWarnings" />
+                        <module name="SuppressWarningsHolder" />
                         <module name="SuppressionCommentFilter" />
-
-                        <property name="tabWidth" value="2" />
-
                         <!-- Imports -->
                         <module name="AvoidStarImport" />
+                        <module name="AvoidStaticImport" />
                         <module name="IllegalImport" />
+                        <module name="ImportOrder" />
                         <module name="RedundantImport" />
                         <module name="UnusedImports" />
-
                         <!-- Javadocs -->
-                        <module name="JavadocStyle" />
-                        <module name="JavadocType" />
+                        <module name="InvalidJavadocPosition" />
+                        <module name="JavadocContentLocationCheck" />
                         <module name="JavadocMethod" />
-                        <module name="JavadocVariable" />
+                        <module name="JavadocMissingLeadingAsterisk" />
+                        <module name="JavadocMissingWhitespaceAfterAsterisk" />
                         <module name="JavadocParagraph" />
+                        <module name="JavadocStyle" />
                         <module name="JavadocTagContinuationIndentation" />
+                        <module name="JavadocType" />
+                        <module name="JavadocVariable" />
+                        <module name="MissingJavadocMethod">
+                          <property name="allowMissingPropertyJavadoc" value="true" />
+                          <property name="ignoreMethodNamesRegex" value="(hashCode|equals)" />
+                        </module>
+                        <module name="MissingJavadocPackage" />
+                        <module name="MissingJavadocType" />
+                        <module name="NonEmptyAtclauseDescription" />
+                        <module name="RequireEmptyLineBeforeBlockTagGroup" />
                         <module name="SummaryJavadoc" />
-
-                        <!-- Verificação de tages -->
+                        <!-- Verificação de tags -->
                         <module name="WriteTag">
                           <property name="tag" value="@incomplete" />
                           <property name="tagFormat" value="\S" />
                           <property name="severity" value="ignore" />
                           <property name="tagSeverity" value="warning" />
                         </module>
-
-                        <!-- Blocos -->
+                        <!-- Verificação de Blocos -->
+                        <module name="AvoidNestedBlocks" />
                         <module name="EmptyBlock" />
+                        <module name="EmptyCatchBlock" />
                         <module name="LeftCurly" />
                         <module name="RightCurly" />
-                        <module name="AvoidNestedBlocks" />
-
-                        <!-- Modificadores de visibilidade -->
+                        <module name="NeedBraces" />
+                        <!-- Desenho das Classes -->
                         <module name="FinalClass" />
-                        <module name="InterfaceIsType" />
                         <module name="HideUtilityClassConstructor" />
+                        <module name="InterfaceIsType" />
                         <module name="MutableException" />
+                        <module name="OneTopLevelClass" />
                         <module name="ThrowsCount">
                           <property name="max" value="3" />
                         </module>
-                        <module name="OneTopLevelClass" />
-
                         <!-- Anotações -->
-                        <module name="SuppressWarnings" />
-                        <module name="SuppressWarningsHolder" />
+                        <module name="AnnotationLocation" />
+                        <module name="AnnotationUseStyle" />
+                        <module name="MissingDeprecated" />
                         <module name="MissingOverride" />
                         <module name="PackageAnnotation" />
-
                         <!-- Codificação -->
+                        <module name="AvoidDoubleBraceInitialization" />
                         <module name="AvoidInlineConditionals" />
+                        <module name="AvoidNoArgumentSuperConstructorCall" />
+                        <module name="CovariantEquals" />
+                        <module name="DeclarationOrder" />
+                        <module name="DefaultComesLast" />
                         <module name="EmptyStatement" />
                         <module name="EqualsAvoidNull" />
                         <module name="EqualsHashCode" />
-                        <module name="InnerAssignment" />
-                        <module name="MagicNumber" />
-                        <module name="MissingSwitchDefault" />
-                        <module name="ModifiedControlVariable" />
-                        <module name="SimplifyBooleanExpression" />
-                        <module name="SimplifyBooleanReturn" />
-                        <module name="StringLiteralEquality" />
-                        <module name="NestedForDepth" />
-                        <module name="NestedIfDepth" />
-                        <module name="NestedTryDepth" />
-                        <module name="SuperClone" />
-                        <module name="SuperFinalize" />
+                        <module name="FallThrough" />
+                        <module name="FinalLocalVariable" />
+                        <module name="HiddenField">
+                          <property name="ignoreConstructorParameter" value="true" />
+                          <property name="ignoreSetter" value="true" />
+                        </module>
                         <module name="IllegalCatch" />
+                        <module name="IllegalInstantiation" />
                         <module name="IllegalThrows" />
-                        <module name="ReturnCount" />
+                        <module name="IllegalToken" />
                         <module name="IllegalType">
                           <property name="ignoredMethodNames" value="getInstance" />
                         </module>
-                        <module name="DeclarationOrder" />
-                        <module name="ParameterAssignment" />
-                        <module name="DefaultComesLast" />
+                        <module name="InnerAssignment" />
+                        <module name="MagicNumber" />
                         <module name="MissingCtor" />
-                        <module name="FallThrough" />
+                        <module name="MissingSwitchDefault" />
+                        <module name="ModifiedControlVariable" />
                         <module name="MultipleStringLiterals" />
                         <module name="MultipleVariableDeclarations" />
-                        <module name="UnnecessaryParentheses" />
+                        <module name="NestedForDepth">
+                          <property name="max" value="2" />
+                        </module>
+                        <module name="NestedIfDepth">
+                          <property name="max" value="2" />
+                        </module>
+                        <module name="NestedTryDepth" />
+                        <module name="NoArrayTrailingComma" />
+                        <module name="NoEnumTrailingComma" />
+                        <module name="NoFinalizer" />
                         <module name="OneStatementPerLine" />
                         <module name="OverloadMethodsDeclarationOrder" />
-
-                        <!-- Verificação de nomes de constantes -->
-                        <module name="ConstantName" />
-
-                        <!-- Nome de Variáveis estáticas -->
-                        <module name="StaticVariableName" />
-                        <module name="TypeName">
-                          <property name="format" value="^_?[A-Z][a-zA-Z0-9]*$" />
+                        <module name="PackageDeclaration" />
+                        <module name="ParameterAssignment" />
+                        <module name="RequireThis" />
+                        <module name="ReturnCount">
+                          <property name="max" value="3" />
                         </module>
-
+                        <module name="SimplifyBooleanExpression" />
+                        <module name="SimplifyBooleanReturn" />
+                        <module name="StringLiteralEquality" />
+                        <module name="SuperClone" />
+                        <module name="UnnecessaryParentheses" />
+                        <module name="UnnecessarySemicolonAfterOuterTypeDeclaration" />
+                        <module name="UnnecessarySemicolonAfterTypeMemberDeclaration" />
+                        <module name="UnnecessarySemicolonInEnumeration" />
+                        <module name="UnnecessarySemicolonInTryWithResources" />
+                        <module name="UnusedLocalVariable" />
+                        <module name="VariableDeclarationUsageDistance">
+                          <property name="allowedDistance" value="5" />
+                        </module>
                         <!-- Métricas -->
                         <module name="BooleanExpressionComplexity" />
-                        <!-- module name="ClassDataAbstractionCoupling"/-->
+                        <module name="ClassDataAbstractionCoupling" />
                         <module name="ClassFanOutComplexity" />
                         <module name="CyclomaticComplexity" />
                         <module name="NPathComplexity" />
-                        <module name="JavaNCSS" />
-
+                        <module name="JavaNCSS"/>
                         <!-- Espaçamentos -->
-                        <module name="GenericWhitespace" />
-                        <module name="EmptyForInitializerPad" />
-                        <module name="EmptyForIteratorPad" />
-                        <module name="NoWhitespaceAfter" />
-                        <module name="NoWhitespaceBefore" />
-                        <module name="OperatorWrap" />
-                        <module name="ParenPad" />
-                        <module name="TypecastParenPad" />
-                        <module name="WhitespaceAfter" />
-                        <module name="WhitespaceAround" />
-                        <module name="NoLineWrap" />
-                        <module name="SeparatorWrap" />
+                        <module name="EmptyForInitializerPad"/>
+                        <module name="EmptyForIteratorPad"/>
+                        <module name="EmptyForIteratorPad"/>
+                        <module name="EmptyLineSeparator">
+                          <property name="allowMultipleEmptyLines" value="false"/>
+                        </module> 
+                        <module name="GenericWhitespace"/>
+                        <module name="MethodParamPad"/>
+                        <module name="NoLineWrap"/>
+                        <module name="NoWhitespaceAfter">
+                          <property name="tokens" value="DOT"/>
+                          <property name="allowLineBreaks" value="false"/>
+                        </module>
+                        <module name="NoWhitespaceBefore">
+                          <property name="allowLineBreaks" value="true"/>
+                        </module>
+                        <module name="NoWhitespaceBeforeCaseDefaultColon"/>
+                        <module name="ParenPad"/>
+                        <module name="TypecastParenPad"/>
+                        <module name="WhitespaceAround"/>
+                        <!-- Outros -->
+                        <module name="ArrayTypeStyle" />
+                        <module name="CommentsIndentation" />
+                        <module name="FinalParameters" />
+                        <module name="Indentation" />
+                        <module name="NoCodeInFile" />
+                        <module name="OuterTypeFilename" />
+                        <module name="TodoComment">
+                          <property name="format" value="(TODO|FIXME)" />
+                        </module>
+                        <module name="UncommentedMain">
+                          <property name="excludedClasses" value="\.Main$" />
+                        </module>
+                        <module name="UpperEll" />
+                        <!-- Modificadores -->
+                        <module name="RedundantModifier"/>
+                        <!-- Definições de nomes -->
+                        <module name="AbbreviationAsWordInName"/>
+                        <module name="AbstractClassName"/>
+                        <module name="CatchParameterName"/>
+                        <module name="ClassTypeParameterName"/>
+                        <module name="ConstantName"/>
+                        <module name="IllegalIdentifierName"/>
+                        <module name="InterfaceTypeParameterName"/>
+                        <module name="LambdaParameterName"/>
+                        <module name="LocalFinalVariableName"/>
+                        <module name="LocalVariableName"/>
+                        <module name="MemberName"/>
+                        <module name="MethodName"/>
+                        <module name="MethodTypeParameterName"/>
+                        <module name="PackageName"/>
+                        <module name="ParameterName"/>
+                        <module name="PatternVariableName"/>
+                        <module name="RecordComponentName"/>
+                        <module name="RecordTypeParameterName"/>
+                        <module name="StaticVariableName"/>
+                        <module name="TypeName"/>
+                        <!-- Tamanhos -->
+                        <module name="AnonInnerLength"/>
+                        <module name="ExecutableStatementCount"/>
+                        <module name="LambdaBodyLength">
+                          <property name="max" value="15"/>
+                        </module>
+                        <module name="MethodCount">
+                          <property name="maxTotal" value="30"/>
+                        </module>
+                        <module name="MethodLength">
+                          <property name="tokens" value="METHOD_DEF"/>
+                          <property name="max" value="60"/>
+                          <property name="countEmpty" value="false"/>
+                        </module>
+                        <module name="OuterTypeNumber"/>
+                        <module name="ParameterNumber"/>
+                        <module name="RecordComponentNumber">
+                          <property name="max" value="3"/>
+                          <property name="accessModifiers" value="private"/>
+                        </module>
+                        <module name="RecordComponentNumber">
+                          <property name="max" value="10"/>
+                          <property name="accessModifiers" value="public"/>
+                        </module>
                       </module>
                     </module>
                   </echoxml>
@@ -462,13 +566,13 @@
             <suppressionsLocation>${checkstyle.suppressions.location}</suppressionsLocation>
             <encoding>UTF-8</encoding>
             <consoleOutput>true</consoleOutput>
-            <failsOnError>true</failsOnError>
-            <linkXRef>false</linkXRef>
+            <failOnViolation>false</failOnViolation> 
+            <linkXRef>true</linkXRef>
           </configuration>
           <executions>
             <execution>
               <id>checkstyle</id>
-              <phase>process-sources</phase>
+              <phase>verify</phase>
               <goals>
                 <goal>check</goal>
               </goals>
@@ -547,7 +651,7 @@
           <artifactId>spotbugs-maven-plugin</artifactId>
           <version>${spotbugs-maaven-plugin.version}</version>
           <configuration>
-            <excludeFilterFile>${findbugs.exclusions.location}</excludeFilterFile>
+            <excludeFilterFile>${spotbugs.exclusions.location}</excludeFilterFile>
           </configuration>
         </plugin>
         <!-- Plugins de Relatórios -->
