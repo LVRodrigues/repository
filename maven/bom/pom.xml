@@ -566,7 +566,7 @@
             <configLocation>${checkstyle.config.location}</configLocation>
             <suppressionsLocation>${checkstyle.suppressions.location}</suppressionsLocation>
             <encoding>UTF-8</encoding>
-            <consoleOutput>true</consoleOutput>
+            <consoleOutput>false</consoleOutput>
             <failOnViolation>false</failOnViolation>
             <linkXRef>true</linkXRef>
           </configuration>
