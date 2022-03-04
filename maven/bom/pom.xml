@@ -357,28 +357,28 @@
                         <module name="ClassFanOutComplexity" />
                         <module name="CyclomaticComplexity" />
                         <module name="NPathComplexity" />
-                        <module name="JavaNCSS"/>
+                        <module name="JavaNCSS" />
                         <!-- Espaçamentos -->
-                        <module name="EmptyForInitializerPad"/>
-                        <module name="EmptyForIteratorPad"/>
-                        <module name="EmptyForIteratorPad"/>
+                        <module name="EmptyForInitializerPad" />
+                        <module name="EmptyForIteratorPad" />
+                        <module name="EmptyForIteratorPad" />
                         <module name="EmptyLineSeparator">
-                          <property name="allowMultipleEmptyLines" value="false"/>
-                        </module> 
-                        <module name="GenericWhitespace"/>
-                        <module name="MethodParamPad"/>
-                        <module name="NoLineWrap"/>
+                          <property name="allowMultipleEmptyLines" value="false" />
+                        </module>
+                        <module name="GenericWhitespace" />
+                        <module name="MethodParamPad" />
+                        <module name="NoLineWrap" />
                         <module name="NoWhitespaceAfter">
-                          <property name="tokens" value="DOT"/>
-                          <property name="allowLineBreaks" value="false"/>
+                          <property name="tokens" value="DOT" />
+                          <property name="allowLineBreaks" value="false" />
                         </module>
                         <module name="NoWhitespaceBefore">
-                          <property name="allowLineBreaks" value="true"/>
+                          <property name="allowLineBreaks" value="true" />
                         </module>
-                        <module name="NoWhitespaceBeforeCaseDefaultColon"/>
-                        <module name="ParenPad"/>
-                        <module name="TypecastParenPad"/>
-                        <module name="WhitespaceAround"/>
+                        <module name="NoWhitespaceBeforeCaseDefaultColon" />
+                        <module name="ParenPad" />
+                        <module name="TypecastParenPad" />
+                        <module name="WhitespaceAround" />
                         <!-- Outros -->
                         <module name="ArrayTypeStyle" />
                         <module name="CommentsIndentation" />
@@ -394,51 +394,51 @@
                         </module>
                         <module name="UpperEll" />
                         <!-- Modificadores -->
-                        <module name="RedundantModifier"/>
+                        <module name="RedundantModifier" />
                         <!-- Definições de nomes -->
-                        <module name="AbbreviationAsWordInName"/>
-                        <module name="AbstractClassName"/>
-                        <module name="CatchParameterName"/>
-                        <module name="ClassTypeParameterName"/>
-                        <module name="ConstantName"/>
-                        <module name="IllegalIdentifierName"/>
-                        <module name="InterfaceTypeParameterName"/>
-                        <module name="LambdaParameterName"/>
-                        <module name="LocalFinalVariableName"/>
-                        <module name="LocalVariableName"/>
-                        <module name="MemberName"/>
-                        <module name="MethodName"/>
-                        <module name="MethodTypeParameterName"/>
-                        <module name="PackageName"/>
-                        <module name="ParameterName"/>
-                        <module name="PatternVariableName"/>
-                        <module name="RecordComponentName"/>
-                        <module name="RecordTypeParameterName"/>
-                        <module name="StaticVariableName"/>
-                        <module name="TypeName"/>
+                        <module name="AbbreviationAsWordInName" />
+                        <module name="AbstractClassName" />
+                        <module name="CatchParameterName" />
+                        <module name="ClassTypeParameterName" />
+                        <module name="ConstantName" />
+                        <module name="IllegalIdentifierName" />
+                        <module name="InterfaceTypeParameterName" />
+                        <module name="LambdaParameterName" />
+                        <module name="LocalFinalVariableName" />
+                        <module name="LocalVariableName" />
+                        <module name="MemberName" />
+                        <module name="MethodName" />
+                        <module name="MethodTypeParameterName" />
+                        <module name="PackageName" />
+                        <module name="ParameterName" />
+                        <module name="PatternVariableName" />
+                        <module name="RecordComponentName" />
+                        <module name="RecordTypeParameterName" />
+                        <module name="StaticVariableName" />
+                        <module name="TypeName" />
                         <!-- Tamanhos -->
-                        <module name="AnonInnerLength"/>
-                        <module name="ExecutableStatementCount"/>
+                        <module name="AnonInnerLength" />
+                        <module name="ExecutableStatementCount" />
                         <module name="LambdaBodyLength">
-                          <property name="max" value="15"/>
+                          <property name="max" value="15" />
                         </module>
                         <module name="MethodCount">
-                          <property name="maxTotal" value="30"/>
+                          <property name="maxTotal" value="30" />
                         </module>
                         <module name="MethodLength">
-                          <property name="tokens" value="METHOD_DEF"/>
-                          <property name="max" value="60"/>
-                          <property name="countEmpty" value="false"/>
+                          <property name="tokens" value="METHOD_DEF" />
+                          <property name="max" value="60" />
+                          <property name="countEmpty" value="false" />
                         </module>
-                        <module name="OuterTypeNumber"/>
-                        <module name="ParameterNumber"/>
+                        <module name="OuterTypeNumber" />
+                        <module name="ParameterNumber" />
                         <module name="RecordComponentNumber">
-                          <property name="max" value="3"/>
-                          <property name="accessModifiers" value="private"/>
+                          <property name="max" value="3" />
+                          <property name="accessModifiers" value="private" />
                         </module>
                         <module name="RecordComponentNumber">
-                          <property name="max" value="10"/>
-                          <property name="accessModifiers" value="public"/>
+                          <property name="max" value="10" />
+                          <property name="accessModifiers" value="public" />
                         </module>
                       </module>
                     </module>
@@ -522,6 +522,7 @@
           <version>${maven-failsafe-plugin.version}</version>
           <executions>
             <execution>
+              <id>integration-test</id>
               <goals>
                 <goal>integration-test</goal>
                 <goal>verify</goal>
@@ -566,7 +567,7 @@
             <suppressionsLocation>${checkstyle.suppressions.location}</suppressionsLocation>
             <encoding>UTF-8</encoding>
             <consoleOutput>true</consoleOutput>
-            <failOnViolation>false</failOnViolation> 
+            <failOnViolation>false</failOnViolation>
             <linkXRef>true</linkXRef>
           </configuration>
           <executions>
@@ -653,6 +654,13 @@
           <configuration>
             <excludeFilterFile>${spotbugs.exclusions.location}</excludeFilterFile>
           </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
         <!-- Plugins de Relatórios -->
         <plugin>
@@ -706,6 +714,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
@@ -798,6 +810,11 @@
           </tagListOptions>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>${spotbugs-maaven-plugin.version}</version>
+      </plugin>      
     </plugins>
   </reporting>
 </project>
