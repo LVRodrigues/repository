@@ -16,7 +16,7 @@
         <name/>
     </bannerRight>
 
-    <publishDate position="left" format="dd/MM/yyyy HH:mm"/>
+    <publishDate position="left" format="yyyy-MM-dd HH:mm"/>
     <version position="right"/>
 
     <custom>
