@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.lvrodrigues</groupId>
+  <groupId>io.github.lvrodrigues</groupId>
   <artifactId>bom</artifactId>
   <version>17.0-SNAPSHOT</version>
   <name>bom</name>
   <packaging>pom</packaging>
   <description>Projeto de configurações iniciais para projetos Maven, utilizando o Github como repositório.</description>
-  <url>https://github.com/LVRodrigues/public/${project.groupId}/${project.artifactId}-${project.version}</url>
+  <url>https://io.github.lvrodrigues/public/${project.groupId}/${project.artifactId}-${project.version}</url>
 
   <properties>
     <!-- Configurações de ambiente -->
@@ -15,7 +15,7 @@
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <scm.url>scm:git:https://github.com/LVRodrigues/public</scm.url>
+    <scm.url>scm:git:https://github.com/LVRodrigues/public.git</scm.url>
     <spotbugs.exclusions.file>lvrodrigues-spotbugs-exclusions.xml</spotbugs.exclusions.file>
     <spotbugs.exclusions.location>${project.build.directory}/${spotbugs.exclusions.file}</spotbugs.exclusions.location>
     <checkstyle.suppressions.file>lvrodrigues-checkstyle-suppressions.xml</checkstyle.suppressions.file>
@@ -34,6 +34,7 @@
     <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
     <maven-site-plugin.version>3.10.0</maven-site-plugin.version>
     <!-- Plugins de Gerenciamento de Código -->
+    <maven-scm-publish-plugin.version>3.1.0</maven-scm-publish-plugin.version>
     <gitflow-maven-plugin.version>1.18.0</gitflow-maven-plugin.version>
     <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
     <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
@@ -79,9 +80,14 @@
   <distributionManagement>
     <repository>
       <id>github</id>
-      <name>Repositório Maven no Github</name>
+      <name>Repositório Maven no GitHub</name>
       <url>https://maven.pkg.github.com/lvrodrigues/public</url>
     </repository>
+    <site>
+      <id>github</id>
+      <name>Repositório de Relatórios do Maven no GitHub</name>
+      <url>${scm.url}</url>
+    </site>
   </distributionManagement>
 
   <scm>
@@ -90,7 +96,7 @@
 
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/LVRodrigues/public/</url>
+    <url>https://github.com/LVRodrigues/public/issues</url>
   </issueManagement>
 
   <build>
@@ -538,9 +544,21 @@
           <version>${maven-site-plugin.version}</version>
           <configuration>
             <locales>pt_BR</locales>
+            <topSiteURL>${scm.url}</topSiteURL>
+            <skipDeploy>true</skipDeploy>
           </configuration>
         </plugin>
         <!-- Plugins de Gerenciamento de Código -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <version>${maven-scm-publish-plugin.version}</version>
+          <configuration>
+            <scmBranch>gh-pages</scmBranch>
+            <subDirectory>${project.groupId}/${project.artifactId}-${project.version}</subDirectory>
+            <pubScmUrl>${scm.url}</pubScmUrl>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>com.amashchenko.maven.plugin</groupId>
           <artifactId>gitflow-maven-plugin</artifactId>
