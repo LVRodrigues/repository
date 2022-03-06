@@ -49,6 +49,7 @@
     <taglist-maven-plugin.version>3.0.0</taglist-maven-plugin.version>
     <!-- Ferramentas -->
     <checkstyle.version>10.0</checkstyle.version>
+    <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
     <!-- Biblitecas que devem ser fixadas. -->
     <asm.version>9.2</asm.version>
     <!-- Limiares JaCoCo. Aumente gradualmente à medida que você adiciona testes. -->
@@ -717,6 +718,12 @@
             <show>private</show>
             <additionalOptions>-html5</additionalOptions>
           </configuration>
+        </plugin>
+        <!-- Plugins de Ferramentas -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>${maven-dependency-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
