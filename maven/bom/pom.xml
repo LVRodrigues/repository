@@ -566,10 +566,10 @@
           <version>${gitflow-maven-plugin.version}</version>
           <configuration>
             <skipFeatureVersion>true</skipFeatureVersion>
-            <flowInitContext>
+            <gitFlowConfig>
               <productionBranch>main</productionBranch>
               <versionTagPrefix>version-</versionTagPrefix>
-            </flowInitContext>
+            </gitFlowConfig>
           </configuration>
         </plugin>
         <plugin>
