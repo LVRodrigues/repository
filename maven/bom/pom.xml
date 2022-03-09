@@ -83,7 +83,7 @@
     <repository>
       <id>github</id>
       <name>Repositório Maven no GitHub</name>
-      <url>https://maven.pkg.github.com/lvrodrigues/public</url>
+      <url>https://maven.pkg.github.com/lvrodrigues/repository</url>
     </repository>
     <site>
       <id>github</id>
