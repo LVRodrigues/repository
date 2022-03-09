@@ -17,6 +17,6 @@ Edit the **pom.xml** file for Maven projects to inherit the settings from this p
         <parent>
             <groupId>io.github.lvrodrigues</groupId>
             <artifactId>bom</artifactId>
-            <version>17.0</version>
+            <version>17.0.0</version>
         </parent>
     ...
