@@ -17,6 +17,6 @@ Edite o arquivo **pom.xml** dos projetos Maven para herdarem as configurações 
         <parent>
             <groupId>io.github.lvrodrigues</groupId>
             <artifactId>bom</artifactId>
-            <version>17.0</version>
+            <version>17.0.0</version>
         </parent>
     ...
