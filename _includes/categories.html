@@ -3,8 +3,18 @@
         Categorias
     </header>
     <nav class="w3-bar-block">
+        {% if include.selected == "Todas" %}
+            <span class="w3-bar-item w3-theme-l1">Todas</span>
+        {% else %}
+            <a class="w3-bar-item w3-button" href="{{ site.baseurl }}/">Todas</a>
+        {% endif %}
         {% for category in site.categories %}
-            <a class="w3-bar-item w3-button" href="{{ site.url }}/category/{{category[0] }}">{{ category[0] }}</a>
+            {% assign item = category | first %}
+            {% if include.selected == item %}
+                <span class="w3-bar-item w3-theme-l1">{{ item }}</span>
+            {% else %}
+                <a class="w3-bar-item w3-button" href="{{ site.baseurl }}/category/{{ item }}">{{ item }}</a>
+            {% endif %}
         {% endfor %}
     </nav>
 </div>

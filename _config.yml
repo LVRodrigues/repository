@@ -8,7 +8,7 @@ url: "https://lvrodrigues.github.io" # the base hostname & protocol for your sit
 github_username: LVRodrigues
 
 # Descomente abaixo para habilitar a paginação.
-paginate: 2
+paginate: 3
 paginate_path: "/page:num/"
 
 # Build settings
