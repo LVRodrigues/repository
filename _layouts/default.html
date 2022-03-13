@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt_BR">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -9,7 +9,8 @@
     <link rel='stylesheet' type='text/css' media='screen' href='{{ site.baseurl }}/css/w3-theme-black.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='{{ site.baseurl }}/css/highlight.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='{{ site.baseurl }}/css/custom.css'>
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script src="https://www.w3schools.com/lib/w3.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/4dac9cd593.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="w3-theme w3-container w3-padding">
@@ -18,7 +19,7 @@
             <strong>{{ site.description }}</strong>
         </div>
     </header>
-    <nav class="w3-container w3-bar w3-theme-l1">
+    <nav class="w3-container w3-bar w3-theme-l1" aria-label="Menu">
         <div class="center">
             <a class="w3-bar-item w3-button w3-right" href="https://github.com/LVRodrigues?tab=packages&repo_name=repository">Pacotes</a>
             <a class="w3-bar-item w3-button w3-right" href="{{ site.baseurl }}/howto/">Como Usar</a>
@@ -30,10 +31,14 @@
         {{ content }}
     </main>
 
-    <footer class="w3-container w3-padding w3-theme-l5 w3-small w3-center">
-        <p>Produzido por <a href="https://lvrodrigues.github.io">Luciano Vieira Rodrigues</a></p>
-        <p>Repositório do GitHub: <a href="https://github.com/LVRodrigues/repository">LVRodrigues/repository</a></p>
-        <p>Publicado em 08/03/2022</p>
+    <footer class="w3-container w3-padding w3-theme-l5 w3-center w3-border-top w3-border-bottom">
+        <nav class="w3-bar w3-xxlarge" aria-label="Mídias Sociais">
+            <a href="https://github.com/LVRodrigues" class="w3-button w3-bar-item"><span class="fa fa-github"></span></a>
+            <a href="https://api.whatsapp.com/send?phone=5511991697302&text=Sauda%C3%A7%C3%B5es!" class="w3-button w3-bar-item"><span class="fa fa-whatsapp"></span></a>
+            <a href="https://www.linkedin.com/in/luciano-rodrigues" class="w3-button w3-bar-item"><span class="fa fa-linkedin"></span></a>
+            <a href="mailto:lvrodriguesline@gmail.com?subject=[repository]" class="w3-button w3-bar-item"><span class="fa fa-envelope"></span></a>
+        </nav>
+        <p class="w3-small">Publicado em 08/03/2022</p>
     </footer>
 </body>
 </html>

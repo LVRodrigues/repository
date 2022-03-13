@@ -1,12 +1,12 @@
 <article class="w3-card w3-hover-shadow w3-margin-bottom">
-    <header class="w3-container w3-padding w3-theme-light w3-xlarge">
+    <header class="w3-container w3-padding w3-theme-l1 w3-large">
         {{ post.title }}
-        <a class="w3-button w3-right w3-small" href="{{ site.baseurl }}{{ post.url }}">Visualizar</a>
+        <a class="w3-button w3-right w3-small" href="{{ site.baseurl }}{{ post.url }}"><span class="fa fa-up-right-from-square"></span></a>
     </header>
     <section class="w3-container">
         {{ post.excerpt}}
     </section>
     <footer class="w3-container w3-padding w3-theme-light">
-        <small>{{ post.date }}</small>
+        <small>Publicado em: {{ post.date }}</small>
     </footer>
 </article>
