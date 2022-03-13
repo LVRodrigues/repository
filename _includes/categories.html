@@ -6,14 +6,14 @@
         {% if include.selected == "Todas" %}
             <span class="w3-bar-item w3-theme-l1">Todas</span>
         {% else %}
-            <a class="w3-bar-item w3-button" href="{{ site.baseurl }}/">Todas</a>
+            <a class="w3-bar-item w3-button" href="{{ '/' | relative_url }}/">Todas</a>
         {% endif %}
         {% for category in site.categories %}
             {% assign item = category | first %}
             {% if include.selected == item %}
                 <span class="w3-bar-item w3-theme-l1">{{ item }}</span>
             {% else %}
-                <a class="w3-bar-item w3-button" href="{{ site.baseurl }}/category/{{ item }}">{{ item }}</a>
+                <a class="w3-bar-item w3-button" href="{{ '/category/' | relative_url }}{{ item }}">{{ item }}</a>
             {% endif %}
         {% endfor %}
     </nav>
