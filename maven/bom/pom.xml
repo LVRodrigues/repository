@@ -4,7 +4,7 @@
 
   <groupId>io.github.lvrodrigues</groupId>
   <artifactId>bom</artifactId>
-  <version>17.0.0</version>
+  <version>17.0.1</version>
   <name>bom</name>
   <packaging>pom</packaging>
   <description>Configurações iniciais para projetos Maven, utilizando o Github como repositório.</description>
@@ -17,6 +17,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <scm.url>scm:git:https://github.com/LVRodrigues/repository.git</scm.url>
+    <gh-pages.url>scm:git:https://github.com/LVRodrigues/repository.git</gh-pages.url>
     <spotbugs.exclusions.file>lvrodrigues-spotbugs-exclusions.xml</spotbugs.exclusions.file>
     <spotbugs.exclusions.location>${project.build.directory}/${spotbugs.exclusions.file}</spotbugs.exclusions.location>
     <checkstyle.suppressions.file>lvrodrigues-checkstyle-suppressions.xml</checkstyle.suppressions.file>
@@ -88,7 +89,7 @@
     <site>
       <id>github</id>
       <name>Repositório de Relatórios do Maven no GitHub</name>
-      <url>${scm.url}</url>
+      <url>${gh-pages.url}</url>
     </site>
   </distributionManagement>
 
@@ -557,7 +558,7 @@
           <configuration>
             <scmBranch>gh-pages</scmBranch>
             <subDirectory>${project.artifactId}-${project.version}</subDirectory>
-            <pubScmUrl>${scm.url}</pubScmUrl>
+            <pubScmUrl>${gh-pages.url}</pubScmUrl>
           </configuration>
         </plugin>
         <plugin>
