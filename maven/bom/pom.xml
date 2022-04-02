@@ -391,7 +391,6 @@
                         <!-- Outros -->
                         <module name="ArrayTypeStyle" />
                         <module name="CommentsIndentation" />
-                        <module name="FinalParameters" />
                         <module name="Indentation" />
                         <module name="NoCodeInFile" />
                         <module name="OuterTypeFilename" />
