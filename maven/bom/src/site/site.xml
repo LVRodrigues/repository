@@ -38,7 +38,10 @@
     </custom>
 
     <body>
-        <menu ref="parent"/>
+        <menu name="Início">
+            <item name="Luciano Vieira Rodrigues" href="https://lvrodrigues.github.io/"/>
+            <item name="Repositório" href="https://lvrodrigues.github.io/repository/"/>
+        </menu>
         <menu ref="modules"/>
         <menu ref="reports"/>
     </body>
