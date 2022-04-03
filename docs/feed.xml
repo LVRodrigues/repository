@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/repository/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/repository/" rel="alternate" type="text/html" /><updated>2022-04-03T20:25:27-03:00</updated><id>http://localhost:4000/repository/feed.xml</id><title type="html">repository</title><subtitle>Repositório de componentes Java gerenciado pelo Maven.</subtitle><entry><title type="html">bom-17.0.2</title><link href="http://localhost:4000/repository/java/maven/2022/04/03/bom-17.0.2.html" rel="alternate" type="text/html" title="bom-17.0.2" /><published>2022-04-03T20:10:00-03:00</published><updated>2022-04-03T20:10:00-03:00</updated><id>http://localhost:4000/repository/java/maven/2022/04/03/bom-17.0.2</id><content type="html" xml:base="http://localhost:4000/repository/java/maven/2022/04/03/bom-17.0.2.html">&lt;p&gt;Projeto de gerenciamento de dependências para ser utilizado como projeto Pai em sistemas
+integrados.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Incremento da versão do Spotbugs para 4.6.0.&lt;/li&gt;
+  &lt;li&gt;Incremento da versão do Checkstyle para 10.1.&lt;/li&gt;
+  &lt;li&gt;Removidas as regras do Checkstyle:
+    &lt;ul&gt;
+      &lt;li&gt;FinalParameters.&lt;/li&gt;
+      &lt;li&gt;FinalLocalVariable.&lt;/li&gt;
+      &lt;li&gt;MissingCtor.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Acesse a &lt;a href=&quot;/repository/bom-17.0.2/&quot;&gt;documentação do projeto&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="java" /><category term="maven" /><summary type="html">Projeto de gerenciamento de dependências para ser utilizado como projeto Pai em sistemas integrados.</summary></entry><entry><title type="html">jfonemabr-1.0.0</title><link href="http://localhost:4000/repository/java/2022/03/14/jfonemabr-1.0.0.html" rel="alternate" type="text/html" title="jfonemabr-1.0.0" /><published>2022-03-14T20:56:00-03:00</published><updated>2022-03-14T20:56:00-03:00</updated><id>http://localhost:4000/repository/java/2022/03/14/jfonemabr-1.0.0</id><content type="html" xml:base="http://localhost:4000/repository/java/2022/03/14/jfonemabr-1.0.0.html">&lt;p&gt;Projeto para análise fonética das palavras para o idioma português brasileiro e implementando o algorítimo BuscarBR.&lt;/p&gt;
+
+&lt;p&gt;Acesse a &lt;a href=&quot;/repository/jfonemabr-1.0.0/jfonemabr/&quot;&gt;documentação do projeto&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="java" /><summary type="html">Projeto para análise fonética das palavras para o idioma português brasileiro e implementando o algorítimo BuscarBR.</summary></entry><entry><title type="html">bom-17.0.1</title><link href="http://localhost:4000/repository/java/maven/2022/03/14/bom-17.0.1.html" rel="alternate" type="text/html" title="bom-17.0.1" /><published>2022-03-14T20:39:00-03:00</published><updated>2022-03-14T20:39:00-03:00</updated><id>http://localhost:4000/repository/java/maven/2022/03/14/bom-17.0.1</id><content type="html" xml:base="http://localhost:4000/repository/java/maven/2022/03/14/bom-17.0.1.html">&lt;p&gt;Publicado o projeto &lt;strong&gt;&lt;a href=&quot;https://lvrodrigues.github.io/repository/bom-17.0.1&quot;&gt;bom-17.0.1&lt;/a&gt;&lt;/strong&gt; para realizar o gerenciamento de dependências entre os componentes Java.&lt;/p&gt;
+
+&lt;p&gt;Correção do endereço de publicação dos sites de documentos.&lt;/p&gt;
+
+&lt;p&gt;Acesse a &lt;a href=&quot;/repository/bom-17.0.1/&quot;&gt;documentação do projeto&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="java" /><category term="maven" /><summary type="html">Publicado o projeto bom-17.0.1 para realizar o gerenciamento de dependências entre os componentes Java.</summary></entry><entry><title type="html">bom-17.0.0</title><link href="http://localhost:4000/repository/java/maven/2022/03/08/bom-17.0.0.html" rel="alternate" type="text/html" title="bom-17.0.0" /><published>2022-03-08T20:32:00-03:00</published><updated>2022-03-08T20:32:00-03:00</updated><id>http://localhost:4000/repository/java/maven/2022/03/08/bom-17.0.0</id><content type="html" xml:base="http://localhost:4000/repository/java/maven/2022/03/08/bom-17.0.0.html">&lt;p&gt;Publicado o projeto &lt;strong&gt;&lt;a href=&quot;https://lvrodrigues.github.io/repository/bom-17.0.0&quot;&gt;bom-17.0.0&lt;/a&gt;&lt;/strong&gt; para realizar o gerenciamento de dependências entre os componentes Java.&lt;/p&gt;
+
+&lt;p&gt;Verifique o modo de uso como projeto Pai em outros projetos Maven para integração.&lt;/p&gt;
+
+&lt;p&gt;Acesse a &lt;a href=&quot;/repository/bom-17.0.0/&quot;&gt;documentação do projeto&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="java" /><category term="maven" /><summary type="html">Publicado o projeto bom-17.0.0 para realizar o gerenciamento de dependências entre os componentes Java.</summary></entry></feed>
