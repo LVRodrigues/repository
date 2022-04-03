@@ -40,7 +40,7 @@
     <gitflow-maven-plugin.version>1.18.0</gitflow-maven-plugin.version>
     <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
     <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
-    <spotbugs-maaven-plugin.version>4.5.3.0</spotbugs-maaven-plugin.version>
+    <spotbugs-maaven-plugin.version>4.6.0.0</spotbugs-maaven-plugin.version>
     <!-- Plugins de Relatórios -->
     <maven-project-info-reports-plugin.version>3.2.1</maven-project-info-reports-plugin.version>
     <maven-jxr-plugin.version>3.1.1</maven-jxr-plugin.version>
@@ -49,10 +49,11 @@
     <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
     <taglist-maven-plugin.version>3.0.0</taglist-maven-plugin.version>
     <!-- Ferramentas -->
-    <checkstyle.version>10.0</checkstyle.version>
+    <checkstyle.version>10.1</checkstyle.version>
     <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
     <!-- Biblitecas que devem ser fixadas. -->
     <asm.version>9.2</asm.version>
+    <spotbugs-annotations.version>4.6.0</spotbugs-annotations.version>
     <!-- Limiares JaCoCo. Aumente gradualmente à medida que você adiciona testes. -->
     <jacoco.unit-tests.limit.instruction-ratio>0%</jacoco.unit-tests.limit.instruction-ratio>
     <jacoco.unit-tests.limit.branch-ratio>0%</jacoco.unit-tests.limit.branch-ratio>
@@ -249,7 +250,13 @@
                         <module name="AvoidStarImport" />
                         <module name="AvoidStaticImport" />
                         <module name="IllegalImport" />
-                        <module name="ImportOrder" />
+                        <module name="ImportOrder">
+                          <property name="groups" value="/^java\./,javax,org,com"/>
+                          <property name="ordered" value="false"/>
+                          <property name="separated" value="true"/>
+                          <property name="option" value="above"/>
+                          <property name="sortStaticImportsAlphabetically" value="true"/>
+                        </module>
                         <module name="RedundantImport" />
                         <module name="UnusedImports" />
                         <!-- Javadocs -->
@@ -261,7 +268,9 @@
                         <module name="JavadocParagraph" />
                         <module name="JavadocStyle" />
                         <module name="JavadocTagContinuationIndentation" />
-                        <module name="JavadocType" />
+                        <module name="JavadocType">
+                          <property name="allowUnknownTags" value="true"/>
+                        </module>
                         <module name="JavadocVariable" />
                         <module name="MissingJavadocMethod">
                           <property name="allowMissingPropertyJavadoc" value="true" />
@@ -312,7 +321,6 @@
                         <module name="EqualsAvoidNull" />
                         <module name="EqualsHashCode" />
                         <module name="FallThrough" />
-                        <module name="FinalLocalVariable" />
                         <module name="HiddenField">
                           <property name="ignoreConstructorParameter" value="true" />
                           <property name="ignoreSetter" value="true" />
@@ -326,7 +334,6 @@
                         </module>
                         <module name="InnerAssignment" />
                         <module name="MagicNumber" />
-                        <module name="MissingCtor" />
                         <module name="MissingSwitchDefault" />
                         <module name="ModifiedControlVariable" />
                         <module name="MultipleStringLiterals" />
@@ -393,7 +400,6 @@
                         <!-- Outros -->
                         <module name="ArrayTypeStyle" />
                         <module name="CommentsIndentation" />
-                        <module name="FinalParameters" />
                         <module name="Indentation" />
                         <module name="NoCodeInFile" />
                         <module name="OuterTypeFilename" />
@@ -718,6 +724,13 @@
           <configuration>
             <show>private</show>
             <additionalOptions>-html5</additionalOptions>
+            <tags>
+              <tag>
+                <name>branch</name>
+                <placement>top</placement>
+                <head>Branch:</head>
+              </tag>
+            </tags>
           </configuration>
         </plugin>
         <!-- Plugins de Ferramentas -->
@@ -875,6 +888,11 @@
         <groupId>org.ow2.asm</groupId>
         <artifactId>asm</artifactId>
         <version>${asm.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>${spotbugs-annotations.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
