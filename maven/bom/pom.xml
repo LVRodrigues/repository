@@ -49,7 +49,7 @@
     <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
     <taglist-maven-plugin.version>3.0.0</taglist-maven-plugin.version>
     <!-- Ferramentas -->
-    <checkstyle.version>10.0</checkstyle.version>
+    <checkstyle.version>10.1</checkstyle.version>
     <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
     <!-- Biblitecas que devem ser fixadas. -->
     <asm.version>9.2</asm.version>
@@ -249,7 +249,13 @@
                         <module name="AvoidStarImport" />
                         <module name="AvoidStaticImport" />
                         <module name="IllegalImport" />
-                        <module name="ImportOrder" />
+                        <module name="ImportOrder">
+                          <property name="groups" value="*,javax,javafx,java,com,org,io,br"/>
+                          <property name="ordered" value="false"/>
+                          <property name="separated" value="true"/>
+                          <property name="option" value="above"/>
+                          <property name="sortStaticImportsAlphabetically" value="true"/>
+                        </module>
                         <module name="RedundantImport" />
                         <module name="UnusedImports" />
                         <!-- Javadocs -->
@@ -261,7 +267,9 @@
                         <module name="JavadocParagraph" />
                         <module name="JavadocStyle" />
                         <module name="JavadocTagContinuationIndentation" />
-                        <module name="JavadocType" />
+                        <module name="JavadocType">
+                          <property name="allowUnknownTags" value="true"/>
+                        </module>
                         <module name="JavadocVariable" />
                         <module name="MissingJavadocMethod">
                           <property name="allowMissingPropertyJavadoc" value="true" />
@@ -715,6 +723,13 @@
           <configuration>
             <show>private</show>
             <additionalOptions>-html5</additionalOptions>
+            <tags>
+              <tag>
+                <name>branch</name>
+                <placement>top</placement>
+                <head>Branch:</head>
+              </tag>
+            </tags>
           </configuration>
         </plugin>
         <!-- Plugins de Ferramentas -->
