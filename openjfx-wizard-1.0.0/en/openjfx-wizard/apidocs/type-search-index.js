@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"io.github.lvrodrigues.wizard","l":"Constants"},{"p":"io.github.lvrodrigues.wizard","l":"Main"},{"p":"io.github.lvrodrigues.wizard","l":"Status"},{"p":"io.github.lvrodrigues.wizard","l":"Wizard"}];updateSearchResults();
