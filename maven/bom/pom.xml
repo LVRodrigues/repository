@@ -4,7 +4,7 @@
 
   <groupId>io.github.lvrodrigues</groupId>
   <artifactId>bom</artifactId>
-  <version>17.0.3-SNAPSHOT</version>
+  <version>17.0.3</version>
   <name>bom</name>
   <packaging>pom</packaging>
   <description>Configurações iniciais para projetos Maven, utilizando o Github como repositório.</description>
