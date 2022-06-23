@@ -4,7 +4,7 @@
 
   <groupId>io.github.lvrodrigues</groupId>
   <artifactId>bom</artifactId>
-  <version>17.0.2</version>
+  <version>17.0.3</version>
   <name>bom</name>
   <packaging>pom</packaging>
   <description>Configurações iniciais para projetos Maven, utilizando o Github como repositório.</description>
@@ -407,7 +407,7 @@
                           <property name="format" value="(TODO|FIXME)" />
                         </module>
                         <module name="UncommentedMain">
-                          <property name="excludedClasses" value="\.Main$" />
+                          <property name="excludedClasses" value="\.Main$|\.Application$" />
                         </module>
                         <module name="UpperEll" />
                         <!-- Modificadores -->
