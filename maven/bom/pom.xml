@@ -4,7 +4,7 @@
 
   <groupId>io.github.lvrodrigues</groupId>
   <artifactId>bom</artifactId>
-  <version>21.0.1-SNAPSHOT</version>
+  <version>21.0.0</version>
   <name>bom</name>
   <packaging>pom</packaging>
   <description>Configurações iniciais para projetos Maven, utilizando o Github como repositório.</description>
@@ -552,7 +552,7 @@
           <artifactId>maven-site-plugin</artifactId>
           <version>${maven-site-plugin.version}</version>
           <configuration>
-            <locales>pt_BR,en</locales>
+            <locales>default,en</locales>
             <skipDeploy>true</skipDeploy>
           </configuration>
         </plugin>
