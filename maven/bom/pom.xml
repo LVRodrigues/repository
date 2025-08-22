@@ -552,7 +552,7 @@
           <artifactId>maven-site-plugin</artifactId>
           <version>${maven-site-plugin.version}</version>
           <configuration>
-            <locales>pt_BR,en</locales>
+            <locales>default,en</locales>
             <skipDeploy>true</skipDeploy>
           </configuration>
         </plugin>
