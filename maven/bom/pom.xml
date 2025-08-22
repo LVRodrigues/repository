@@ -4,7 +4,7 @@
 
   <groupId>io.github.lvrodrigues</groupId>
   <artifactId>bom</artifactId>
-  <version>17.0.4-SNAPSHOT</version>
+  <version>21.0.0</version>
   <name>bom</name>
   <packaging>pom</packaging>
   <description>Configurações iniciais para projetos Maven, utilizando o Github como repositório.</description>
@@ -12,8 +12,8 @@
 
   <properties>
     <!-- Configurações de ambiente -->
-    <maven.binary.version>3.8.4</maven.binary.version>
-    <maven.compiler.release>17</maven.compiler.release>
+    <maven.binary.version>3.9.11</maven.binary.version>
+    <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <scm.url>scm:git:https://github.com/LVRodrigues/repository.git</scm.url>
@@ -25,35 +25,35 @@
     <checkstyle.config.file>lvrodrigues-checkstyle-config.xml</checkstyle.config.file>
     <checkstyle.config.location>${project.build.directory}/${checkstyle.config.file}</checkstyle.config.location>
     <!-- Plugin de Restrição e Ambiente -->
-    <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
-    <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
+    <maven-enforcer-plugin.version>3.6.1</maven-enforcer-plugin.version>
+    <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
     <!-- Plugins de Construção -->
-    <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-    <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
-    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-    <maven-compiler-plugin.version>3.10.0</maven-compiler-plugin.version>
-    <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
-    <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
-    <maven-site-plugin.version>3.10.0</maven-site-plugin.version>
+    <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+    <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+    <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+    <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+    <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+    <maven-failsafe-plugin.version>3.5.3</maven-failsafe-plugin.version>
+    <maven-site-plugin.version>3.21.0</maven-site-plugin.version>
     <!-- Plugins de Gerenciamento de Código -->
-    <maven-scm-publish-plugin.version>3.1.0</maven-scm-publish-plugin.version>
-    <gitflow-maven-plugin.version>1.18.0</gitflow-maven-plugin.version>
-    <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
-    <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
-    <spotbugs-maaven-plugin.version>4.6.0.0</spotbugs-maaven-plugin.version>
+    <maven-scm-publish-plugin.version>3.3.0</maven-scm-publish-plugin.version>
+    <gitflow-maven-plugin.version>1.21.0</gitflow-maven-plugin.version>
+    <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
+    <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+    <spotbugs-maaven-plugin.version>4.9.3.2</spotbugs-maaven-plugin.version>
     <!-- Plugins de Relatórios -->
-    <maven-project-info-reports-plugin.version>3.2.1</maven-project-info-reports-plugin.version>
-    <maven-jxr-plugin.version>3.1.1</maven-jxr-plugin.version>
-    <maven-pmd-plugin.version>3.15.0</maven-pmd-plugin.version>
-    <maven-javadoc-plugin.version>3.3.2</maven-javadoc-plugin.version>
-    <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
-    <taglist-maven-plugin.version>3.0.0</taglist-maven-plugin.version>
+    <maven-project-info-reports-plugin.version>3.9.0</maven-project-info-reports-plugin.version>
+    <maven-jxr-plugin.version>3.6.0</maven-jxr-plugin.version>
+    <maven-pmd-plugin.version>3.27.0</maven-pmd-plugin.version>
+    <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+    <maven-changelog-plugin.version>3.0.0-M1</maven-changelog-plugin.version>
+    <taglist-maven-plugin.version>3.2.1</taglist-maven-plugin.version>
     <!-- Ferramentas -->
-    <checkstyle.version>10.1</checkstyle.version>
-    <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
+    <checkstyle.version>11.0.0</checkstyle.version>
+    <maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
     <!-- Biblitecas que devem ser fixadas. -->
-    <asm.version>9.2</asm.version>
-    <spotbugs-annotations.version>4.6.0</spotbugs-annotations.version>
+    <asm.version>9.8</asm.version>
+    <spotbugs-annotations.version>4.9.4</spotbugs-annotations.version>
     <!-- Limiares JaCoCo. Aumente gradualmente à medida que você adiciona testes. -->
     <jacoco.unit-tests.limit.instruction-ratio>0%</jacoco.unit-tests.limit.instruction-ratio>
     <jacoco.unit-tests.limit.branch-ratio>0%</jacoco.unit-tests.limit.branch-ratio>
