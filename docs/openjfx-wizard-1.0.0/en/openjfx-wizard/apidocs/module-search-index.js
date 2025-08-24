@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"io.github.lvrodrigues.wizard"}];updateSearchResults();
