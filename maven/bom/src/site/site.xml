@@ -1,48 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project>
+<site xmlns="http://maven.apache.org/DECORATION/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 https://maven.apache.org/xsd/decoration-1.0.0.xsd"
+    name="${project.artifactId}">
+
+    <bannerLeft />
+    <bannerRight />
+
+    <publishDate position="left" format="dd/MM/yyyy HH:mm z" />
+    <version position="right" />
     <edit>${project.scm.url}</edit>
 
     <skin>
         <groupId>org.apache.maven.skins</groupId>
         <artifactId>maven-fluido-skin</artifactId>
-        <version>1.10.0</version>
+        <version>2.1.0</version>
     </skin>
 
-    <bannerLeft>
-        <name>${project.artifactId}</name>
-    </bannerLeft>
-
-    <bannerRight>
-        <name/>
-    </bannerRight>
-
-    <publishDate position="left" format="dd/MM/yyyy HH:mm"/>
-    <version position="right"/>
+    <body>
+        <menu name="Home">
+            <item name="Luciano Vieira Rodrigues" href="https://lvrodrigues.github.io/"/>
+            <item name="Repositório" href="https://lvrodrigues.github.io/repository/"/>
+        </menu>        
+        <menu ref="parent"/>
+        <menu ref="modules"/>
+        <menu ref="reports"/>
+    </body>
 
     <custom>
         <fluidoSkin>
             <topBarEnabled>true</topBarEnabled>
-            <navBarStyle>navbar-inverse</navBarStyle>
             <sideBarEnabled>false</sideBarEnabled>
+            <navBarStyle>navbar-inverse</navBarStyle>
+            <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+            <copyrightClass>pull-left</copyrightClass>
             <profile>production</profile>
-
             <gitHub>
-                <projectId>lvrodrigues/repository</projectId>
+                <projectId>Code-Solver-Consultoria/repository</projectId>
                 <ribbonOrientation>right</ribbonOrientation>
                 <ribbonColor>black</ribbonColor>
             </gitHub>
-            
-            <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
-            <copyrightClass>pull-right</copyrightClass>
         </fluidoSkin>
     </custom>
-
-    <body>
-        <menu name="Início">
-            <item name="Luciano Vieira Rodrigues" href="https://lvrodrigues.github.io/"/>
-            <item name="Repositório" href="https://lvrodrigues.github.io/repository/"/>
-        </menu>
-        <menu ref="modules"/>
-        <menu ref="reports"/>
-    </body>
-</project>
+</site>

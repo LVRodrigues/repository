@@ -170,12 +170,11 @@
               <phase>initialize</phase>
               <configuration>
                 <target>
-                  <echo file="${checkstyle.suppressions.location}">
-                    <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-                    <!DOCTYPE suppressions PUBLIC
-                        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
-                        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
-                    ]]>
+                  <echo file="${checkstyle.suppressions.location}"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+]]>
                   </echo>
                   <echoxml file="${checkstyle.suppressions.location}" append="true">
                     <suppressions>
@@ -201,12 +200,11 @@
               <phase>initialize</phase>
               <configuration>
                 <target>
-                  <echo file="${checkstyle.config.location}">
-                    <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-                    <!DOCTYPE module PUBLIC
-                      "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
-                      "https://checkstyle.org/dtds/configuration_1_3.dtd">
-                    ]]>
+                  <echo file="${checkstyle.config.location}"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC
+  "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+  "https://checkstyle.org/dtds/configuration_1_3.dtd">
+]]>
                   </echo>
                   <echoxml file="${checkstyle.config.location}" append="true">
                     <module name="Checker">
