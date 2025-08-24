@@ -4,8 +4,8 @@ Initial configurations for Java and Maven projects, using Github as a repository
 
 ## Restrictions
 
-* Java 17
-* Maven 3.8.4
+* Java 21
+* Maven 3.9.10
 
 ## How To Use
 
@@ -17,6 +17,6 @@ Edit the **pom.xml** file for Maven projects to inherit the settings from this p
         <parent>
             <groupId>io.github.lvrodrigues</groupId>
             <artifactId>bom</artifactId>
-            <version>17.0.0</version>
+            <version>21.0.0</version>
         </parent>
     ...
